@@ -1,0 +1,185 @@
+Samajh gaya 👌 lab eval hai toh tujhe **Master Theorem wale recurrence relations** ki solid practice chahiye with step-by-step solution.
+Main tujhe yahan **8 practice questions** deta hoon — easy → medium → thoda tricky.
+Har ek ka detailed solution bhi de raha hoon jaise exam me likhna hota hai.
+
+---
+
+## 🔥 Practice Set (Master Theorem)
+
+---
+
+### Q1.
+
+$$
+T(n) = 2T(n/2) + n
+$$
+
+👉 Compare:
+
+* $a = 2, b = 2, f(n) = n = n^1$
+* $\log_b a = \log_2 2 = 1$
+* $f(n) = n^1 = n^{\log_b a}$
+
+✅ Case 2 →
+
+$$
+T(n) = \Theta(n \log n)
+$$
+
+---
+
+### Q2.
+
+$$
+T(n) = 3T(n/2) + n
+$$
+
+👉 Compare:
+
+* $a = 3, b = 2, f(n) = n$
+* $\log_b a = \log_2 3 \approx 1.585$
+* $f(n) = n^1 < n^{1.585}$
+
+✅ Case 1 →
+
+$$
+T(n) = \Theta(n^{\log_2 3})
+$$
+
+---
+
+### Q3.
+
+$$
+T(n) = 8T(n/2) + n^2
+$$
+
+👉 Compare:
+
+* $a = 8, b = 2, f(n) = n^2$
+* $\log_b a = \log_2 8 = 3$
+* $f(n) = n^2 < n^3$
+
+✅ Case 1 →
+
+$$
+T(n) = \Theta(n^3)
+$$
+
+---
+
+### Q4.
+
+$$
+T(n) = 9T(n/3) + n^2
+$$
+
+👉 Compare:
+
+* $a = 9, b = 3, f(n) = n^2$
+* $\log_b a = \log_3 9 = 2$
+* $f(n) = n^2 = n^{\log_b a}$
+
+✅ Case 2 →
+
+$$
+T(n) = \Theta(n^2 \log n)
+$$
+
+---
+
+### Q5.
+
+$$
+T(n) = 2T(n/2) + n^2
+$$
+
+👉 Compare:
+
+* $a = 2, b = 2, f(n) = n^2$
+* $\log_b a = \log_2 2 = 1$
+* $f(n) = n^2 \gg n^1$
+
+✅ Case 3 →
+
+$$
+T(n) = \Theta(n^2)
+$$
+
+---
+
+### Q6.
+
+$$
+T(n) = 7T(n/2) + n^2
+$$
+
+👉 Compare:
+
+* $a = 7, b = 2, f(n) = n^2$
+* $\log_b a = \log_2 7 \approx 2.8$
+* $f(n) = n^2 < n^{2.8}$
+
+✅ Case 1 →
+
+$$
+T(n) = \Theta(n^{\log_2 7})
+$$
+
+---
+
+### Q7.
+
+$$
+T(n) = 5T(n/5) + n \log n
+$$
+
+👉 Compare:
+
+* $a = 5, b = 5, f(n) = n \log n = n^1 \log^1 n$
+* $\log_b a = \log_5 5 = 1$
+* $f(n) = n^1 \log^1 n$
+
+This matches **Case 2, p > -1** →
+
+$$
+T(n) = \Theta(n \log^2 n)
+$$
+
+---
+
+### Q8.
+
+$$
+T(n) = 4T(n/2) + n \log^2 n
+$$
+
+👉 Compare:
+
+* $a = 4, b = 2, f(n) = n \log^2 n$
+* $\log_b a = \log_2 4 = 2$
+* $f(n) = n^1 \log^2 n < n^2$
+
+✅ Case 1 →
+
+$$
+T(n) = \Theta(n^2)
+$$
+
+---
+
+✨ **Summary of Answers:**
+
+1. $T(n) = \Theta(n \log n)$
+2. $T(n) = \Theta(n^{\log_2 3})$
+3. $T(n) = \Theta(n^3)$
+4. $T(n) = \Theta(n^2 \log n)$
+5. $T(n) = \Theta(n^2)$
+6. $T(n) = \Theta(n^{\log_2 7})$
+7. $T(n) = \Theta(n \log^2 n)$
+8. $T(n) = \Theta(n^2)$
+
+---
+
+⚡Bhai, agar tu chaahe toh main aur **10 “exam level mixed practice”** bana dunga jisme har case (1,2,3) aa jaye taki tu lab eval me instantly identify kar le.
+Bana du kya?
