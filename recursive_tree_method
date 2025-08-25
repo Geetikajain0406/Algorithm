@@ -1,0 +1,35 @@
+sahi — “depth/height of recursion tree” = kitni baar input size 1 tak halve hota hai (edges from root to leaf).
+General rule (for $T(n)=a\,T(n/b)+f(n)$): **depth = $\lceil \log_b n \rceil$**.
+(If you count **levels including root**, that’s $\lceil \log_b n \rceil+1$.)
+
+Yeh 4 common wale ke depths:
+
+1. **$T(n)=T(n/2)+n$**
+
+* Har step: $n \to n/2 \to n/4 \to \cdots \to 1$
+* **Depth** = $\lceil \log_2 n \rceil$
+* (Levels incl. root = $\lceil \log_2 n \rceil+1$)
+
+2. **$T(n)=2T(n/2)+n$**
+
+* Split 2 branches, but size halving hi decide karta hai depth.
+* **Depth** = $\lceil \log_2 n \rceil$
+* (Levels = $\lceil \log_2 n \rceil+1$)
+
+3. **$T(n)=2T(n/2)+n^2$**
+
+* Work badal gaya, par depth sirf size-halving se aati hai.
+* **Depth** = $\lceil \log_2 n \rceil$
+* (Levels = $\lceil \log_2 n \rceil+1$)
+
+4. **$T(n)=3T(n/2)+n$**
+
+* 3 branches, par har path pe size: $n, n/2, n/4, …, 1$.
+* **Depth** = $\lceil \log_2 n \rceil$
+* (Levels = $\lceil \log_2 n \rceil+1$)
+
+Bonus (jo aksar poochte hain):
+
+* **$T(n)=T(n-1)+1$** → **Depth = n-1** (Levels = n)
+
+Agar chaahe to mai har ek ka tiny tree sketch bhi dikha du, jisme level numbering + last level ka size explicitly marked ho.
