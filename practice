@@ -1,0 +1,134 @@
+Bahut badiya sawal hai 👌 recursion waale questions mein time complexity nikalna sabse important part hota hai DSA ka. Main tujhe step by step **approach** samjhata hoon.
+
+---
+
+## 🔹 General Approach to Find Time Complexity of Recursion
+
+Recursive algorithm ka time complexity usually **recurrence relation** ke form mein likha jaata hai:
+
+$$
+T(n) = a \cdot T\Big(\frac{n}{b}\Big) + f(n)
+$$
+
+yahaan:
+
+* `a` = number of recursive calls
+* `n/b` = har call ke input size ka fraction
+* `f(n)` = non-recursive kaam (loop, addition, comparison, etc.)
+
+---
+
+### 1. Direct Expansion (Substitution Method)
+
+Recursive relation ko expand karke pattern dhundo.
+
+**Example 1:**
+
+```c
+void fun(int n) {
+    if (n <= 1) return;
+    fun(n/2);
+    fun(n/2);
+}
+```
+
+Recurrence relation:
+
+$$
+T(n) = 2T(n/2) + O(1)
+$$
+
+Expansion:
+
+$$
+T(n) = 2\Big[2T(n/4) + O(1)\Big] + O(1)
+     = 4T(n/4) + 2O(1) + O(1)
+     = 4T(n/4) + O(1)
+$$
+
+General form:
+
+$$
+T(n) = 2^kT(n/2^k) + k \cdot O(1)
+$$
+
+Jab $n/2^k = 1 \Rightarrow k = \log n$
+
+$$
+T(n) = 2^{\log n}T(1) + O(\log n)
+     = n + O(\log n)
+     = O(n)
+$$
+
+---
+
+### 2. Recursion Tree Method
+
+Recursion ko ek **tree** ki tarah draw karo, har level pe kaam count karo, aur total kaam sum karo.
+
+**Example 2:** Merge Sort
+
+```c
+void mergeSort(int arr[], int n) {
+    if (n <= 1) return;
+    mergeSort(left, n/2);
+    mergeSort(right, n/2);
+    merge(arr);   // O(n)
+}
+```
+
+Recurrence:
+
+$$
+T(n) = 2T(n/2) + O(n)
+$$
+
+* Level 0: `O(n)`
+* Level 1: 2 calls × O(n/2) = O(n)
+* Level 2: 4 calls × O(n/4) = O(n)
+* …
+* Levels = log n
+
+Total work = O(n) × (log n + 1) = **O(n log n)**
+
+---
+
+### 3. Master Theorem (Shortcut)
+
+Master theorem directly solve karta hai recurrence:
+
+$$
+T(n) = aT(n/b) + f(n)
+$$
+
+Compare $f(n)$ with $n^{\log_b a}$:
+
+* **Case 1:** If $f(n) = O(n^c)$, where $c < \log_b a$ → $T(n) = \Theta(n^{\log_b a})$
+* **Case 2:** If $f(n) = \Theta(n^{\log_b a})$ → $T(n) = \Theta(n^{\log_b a}\log n)$
+* **Case 3:** If $f(n) = \Omega(n^c)$, where $c > \log_b a$ and regularity condition holds → $T(n) = \Theta(f(n))$
+
+**Example 3:**
+
+$$
+T(n) = 2T(n/2) + O(n)
+$$
+
+* a = 2, b = 2 → $\log_b a = 1$
+* f(n) = O(n) = Θ(n^1)
+
+Case 2 ⇒ $T(n) = Θ(n \log n)$ ✅
+
+---
+
+## 🔑 Summary
+
+1. **Recurrence relation likho** (kaam + recursive calls).
+2. Solve by:
+
+   * Substitution method (expand karke pattern dikhana).
+   * Recursion tree method (level wise kaam count karna).
+   * Master theorem (fast shortcut).
+
+---
+
+👉 Ab bata, tu chaahega main tere liye **har method se ek hi question solve karun** (jaise Fibonacci ya Merge Sort) taaki tu compare karke samajh sake, ya fir tujhe ek **practice set** chahiye recursion ke complexity ke?
