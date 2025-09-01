@@ -1,0 +1,58 @@
+Thoda step by step dekhte hain 👇
+
+Tumne 3 complexities di hain:
+
+1. **log log n**
+2. **log base 2 ( log n base n )**
+3. **n**
+
+---
+
+### 1️⃣  log log n
+
+* Ye sabse **chhoti** complexity hai.
+* Growth: bahut slow (log ke andar ek aur log).
+* Example: Agar n = 2^16 = 65536
+
+  * log n = 16
+  * log log n = 4
+
+---
+
+### 2️⃣  log base 2 ( log n base n )
+
+Isko samajhne ke liye:
+
+$$
+\log_2 \big(\log_n n\big)
+$$
+
+* Lekin **log base n of n = 1** (kyunki kisi bhi base ke power 1 = wahi number).
+* Matlab **log\_n n = 1**.
+
+$$
+\log_2 1 = 0
+$$
+
+⚠️ Ye to **constant** ban gaya (independent of n).
+
+* Complexity = **O(1)**
+
+---
+
+### 3️⃣  n
+
+* Linear growth.
+* Sabse bada in teeno me.
+
+---
+
+✅ **Final Order (ascending):**
+
+$$
+O(1) < O(\log \log n) < O(n)
+$$
+
+---
+
+Bhai, tu chahata hai mai aur 3–4 aise tricky **time complexity comparison** wale examples banaun practice ke liye?
