@@ -1,0 +1,128 @@
+Nice notes — here's a compact, cleaned-up, and action-oriented version with clear rules, corrected steps, tips for picking constants, common mistakes, plus 5 short practice problems with full solutions so you can test yourself.
+
+# Quick definitions (plain)
+
+* **Big-O (upper bound):**
+  $f(n)=O(g(n))$ iff ∃ positive constants $c,n_0$ such that $0\le f(n)\le c\,g(n)$ for all $n\ge n_0$.
+
+* **Omega (lower bound):**
+  $f(n)=\Omega(g(n))$ iff ∃ positive constants $c,n_0$ such that $0\le c\,g(n)\le f(n)$ for all $n\ge n_0$.
+
+* **Theta (tight bound):**
+  $f(n)=\Theta(g(n))$ iff ∃ positive constants $c_1,c_2,n_0$ with $0\le c_1g(n)\le f(n)\le c_2g(n)$ for all $n\ge n_0$.
+  Equivalently: $f(n)=O(g(n))$ and $f(n)=\Omega(g(n))$.
+
+# How to *prove* $f(n)=O(g(n))$ (step-by-step)
+
+1. Start with inequality you need: $f(n)\le c\,g(n)$.
+2. Rearrange: try to get a simple condition in the form something ≥ 0 or a polynomial inequality.
+3. Solve/reason to find some $n_0$ after which the inequality holds.
+4. Choose a convenient $c$ (often the leading coefficient ratio works) and confirm the inequality for all $n\ge n_0$.
+5. State the constants $c$ and $n_0$ and conclude.
+
+**Tip:** there is not a unique $c,n_0$. Any pair that satisfies the definition is fine. Prefer small $c$ and small $n_0$ but correctness matters most.
+
+# Example corrections + explanation
+
+**Example A (from your notes):**
+$f(n)=2n^2,\; g(n)=n^3$. Show $f(n)=O(g(n))$.
+
+We want $2n^2 \le c\,n^3$ for large $n$. Rearranged: $2 \le c n$.
+Pick $c=1$. Then $2\le n$ → hold for all $n\ge 2$. So $c=1,\; n_0=2$ works. (Also many other choices like $c=2,n_0=1$ work.)
+
+**Example B (from your notes):**
+$f(n)=8n+128,\; g(n)=n^2$. Show $f(n)=O(n^2)$.
+
+We need $8n+128 \le c\,n^2$. Try $c=1$: check $n^2-8n-128\ge0$. Solve quadratic: discriminant $=64+512=576$ ⇒ sqrt $=24$. Roots: $\frac{8\pm24}{2}=-8,\;16$. So $n^2-8n-128\ge0$ for $n\ge16$. So $c=1,\; n_0=16$ works. (Your notes said this but had an unclear intermediate comment — this is the correct reasoning.)
+
+# How to prove Theta (two inequalities)
+
+To show $f(n)=\Theta(g(n))$ you must show both $f(n)=O(g(n))$ and $f(n)=\Omega(g(n))$. Common pattern for polynomials: compare leading terms.
+
+**Example (notes):** $f(n)=7n^2-54n+3$. Show $f(n)=\Theta(n^2)$.
+
+We need constants $c_1,c_2,n_0$ with $c_1 n^2 \le 7n^2-54n+3 \le c_2 n^2$.
+
+* For upper bound choose $c_2=9$. For all $n\ge1$, $7n^2-54n+3 \le 7n^2 + 0 \le 9n^2$ for sufficiently large $n$. More precisely the negative term just makes RHS easier; one can verify $7n^2-54n+3 \le 9n^2$ for all $n\ge 1$.
+* For lower bound choose $c_1=5$. We need $5n^2 \le 7n^2-54n+3$ ⇒ $0 \le 2n^2-54n+3$. Solve $2n^2-54n+3\ge0$ — you can check it holds for $n\ge 28$ (as in your notes). So $c_1=5,c_2=9,n_0=28$ works.
+
+# Quick heuristics / shortcuts
+
+* For polynomials: compare highest-degree terms. $a n^k + \text{lower}$ is $\Theta(n^k)$ if $a>0$.
+* If $f(n)$ is polynomial of degree $d$ and $g(n)=n^k$:
+
+  * if $d<k$ then $f(n)=o(g(n))$ and $f(n)=O(g(n))$,
+  * if $d=k$ then $f(n)=\Theta(g(n))$,
+  * if $d>k$ then $f(n)$ is not $O(g(n))$ (it grows faster).
+* Logs grow slower than any power $n^\epsilon$. Exponentials grow faster than polynomials.
+
+# Common mistakes
+
+* Choosing $n_0$ that does not actually make the inequality hold for *all* $n\ge n_0$. Always check the inequality holds beyond your chosen $n_0$.
+* Confusing small-$n$ behavior with asymptotic behavior — asymptotic ignores finite initial region.
+* Thinking constants must be unique — they are not.
+* Trying to make $g(n)$ bigger than necessary. Always try to show the smallest reasonable $g(n)$.
+
+---
+
+# Practice problems (with worked solutions)
+
+### Problem 1
+
+Show $f(n)=3n^2+2n+1=\Theta(n^2)$.
+
+**Solution:** For upper bound: $3n^2+2n+1 \le 3n^2+2n^2+1n^2 =6n^2$ for $n\ge1$ (since $2n\le 2n^2$ when $n\ge1$). So $f(n)\le 6n^2$ so $f(n)=O(n^2)$ with $c_2=6,n_0=1$.
+
+For lower bound: $3n^2+2n+1 \ge 3n^2$ for $n\ge1$. So $f(n)\ge 3n^2$ → $f(n)=\Omega(n^2)$ with $c_1=3,n_0=1$. Hence $f(n)=\Theta(n^2)$.
+
+---
+
+### Problem 2
+
+Show $f(n)=5n\log n = o(n^2)$ (i.e., $f(n)=O(n^2)$ and grows strictly slower).
+
+**Solution:** For $n\ge 2$, $\log n \le n$. So $5n\log n \le 5n\cdot n = 5n^2$. So $f(n)=O(n^2)$ with $c=5,n_0=2$. Since $n\log n / n^2 = (\log n)/n \to 0$ as $n\to\infty$, in fact $f(n)=o(n^2)$.
+
+---
+
+### Problem 3
+
+Is $f(n)=n^3+100n$ equal to $\Theta(n^2)$? Explain.
+
+**Solution:** No. For large $n$, $n^3$ dominates $n^2$. If we tried to show $n^3+100n \le c n^2$ for some constant $c$ and all big $n$, that fails because left side grows like $n^3$ and right side like $n^2$. So $f(n)$ is **not** $\Theta(n^2)$. It is $\Theta(n^3)$.
+
+---
+
+### Problem 4
+
+Show $f(n)=7n-20 = \Omega(n)$.
+
+**Solution:** Need $c n \le 7n-20$ for large $n$. Choose $c=6$. Then $6n \le 7n-20$ ⇔ $n\ge 20$. So $c=6,n_0=20$ works. Hence $f(n)=\Omega(n)$. (Also $f(n)=O(n)$, so $f(n)=\Theta(n)$.)
+
+---
+
+### Problem 5
+
+Decide whether $f(n)=2^n$ is $O(n^k)$ for any constant $k$.
+
+**Solution:** No. Exponentials grow faster than any polynomial. For any fixed $k$, $\lim_{n\to\infty} \frac{2^n}{n^k}=\infty$. So $2^n$ is not $O(n^k)$ for any constant $k$.
+
+---
+
+# Short checklist when you write a proof
+
+1. State the definition you use (O, Ω, or Θ).
+2. Pick $c$ (or $c_1,c_2$) and attempt to manipulate the inequality.
+3. Solve for $n_0$ (explicitly or by bounding lower-degree terms by multiples of the higher-degree term).
+4. Verify the inequality for all $n\ge n_0$.
+5. Conclude with the constants.
+
+---
+
+If you want, I can:
+
+* make a printable 1-page cheat sheet from this,
+* generate a set of 15 mixed practice questions (easy→hard) with full solutions, or
+* walk through any one of your original examples step-by-step (line by line).
+
+Which would help you most next?
