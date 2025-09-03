@@ -1,0 +1,60 @@
+समझ गया 👍 आप **Linear Search (Recursive)** code chahte ho. मैं आपको सबसे simple C code deta hoon aur Hinglish me explain bhi karta hoon.
+
+---
+
+### Recursive Linear Search in C
+
+```c
+#include <stdio.h>
+
+// Recursive function for Linear Search
+int linearSearch(int arr[], int n, int key, int index) {
+    if (index >= n) {
+        return -1;  // agar array khatam ho gaya aur element nahi mila
+    }
+    if (arr[index] == key) {
+        return index;  // element mil gaya
+    }
+    return linearSearch(arr, n, key, index + 1);  // next index check karo
+}
+
+int main() {
+    int arr[] = {5, 15, 25, 35, 45};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int key;
+
+    printf("Enter element to search: ");
+    scanf("%d", &key);
+
+    int result = linearSearch(arr, n, key, 0);
+
+    if (result != -1) {
+        printf("Element found at index %d\n", result);
+    } else {
+        printf("Element not found\n");
+    }
+
+    return 0;
+}
+```
+
+---
+
+### Hinglish Explanation 📝
+
+* Recursive linear search me hum ek function banate hain jo har step pe ek element check karta hai.
+* Agar `arr[index] == key` → element mil gaya, return kar do.
+* Agar `index >= n` → iska matlab pura array check ho gaya aur element nahi mila, return `-1`.
+* Agar element current position pe nahi hai → next index ke liye function ko recursively call kar do.
+
+👉 Example:
+Array = `{5, 15, 25, 35, 45}`, Key = `35`
+
+* Index 0 → 5 ≠ 35
+* Index 1 → 15 ≠ 35
+* Index 2 → 25 ≠ 35
+* Index 3 → 35 == 35 ✅ → return index 3
+
+---
+
+Batao kya main iska **dry run step-by-step** bhi bana kar samjhau jaise maine Binary Search ke liye offer kiya tha?
