@@ -1,0 +1,96 @@
+Perfect! Chal bhai, main tujhe **Binary Search ka full dry run** deta hu step-by-step **array + pointers + decisions** ke saath.
+
+---
+
+# **Binary Search Dry Run**
+
+**Problem:** Search for `target = 23` in the sorted array
+
+```
+arr = [5, 8, 12, 16, 23, 38, 45]
+```
+
+---
+
+## **Step 0: Initialize pointers**
+
+```
+low = 0, high = n-1 = 6
+```
+
+Array index mapping:
+
+```
+Index: 0   1   2   3   4   5   6
+Value: 5   8   12 16  23  38  45
+```
+
+---
+
+## **Step 1: Calculate mid**
+
+```
+mid = (low + high) / 2 = (0+6)/2 = 3
+arr[mid] = arr[3] = 16
+```
+
+**Compare:** 16 < 23 → search **right half**
+
+```
+low = mid + 1 = 4
+high = 6
+```
+
+---
+
+## **Step 2: Calculate mid**
+
+```
+mid = (low + high)/2 = (4 + 6)/2 = 5
+arr[mid] = arr[5] = 38
+```
+
+**Compare:** 38 > 23 → search **left half**
+
+```
+low = 4
+high = mid - 1 = 4
+```
+
+---
+
+## **Step 3: Calculate mid**
+
+```
+mid = (low + high)/2 = (4 + 4)/2 = 4
+arr[mid] = arr[4] = 23
+```
+
+**Compare:** 23 == 23 → **Found!**
+
+✅ Target 23 found at **index 4**
+
+---
+
+### **Binary Search Dry Run Table**
+
+| Step | low | high | mid | arr\[mid] | Decision        |
+| ---- | --- | ---- | --- | --------- | --------------- |
+| 1    | 0   | 6    | 3   | 16        | 16 < 23 → right |
+| 2    | 4   | 6    | 5   | 38        | 38 > 23 → left  |
+| 3    | 4   | 4    | 4   | 23        | Found           |
+
+---
+
+### ✅ Key Points
+
+* **Time Complexity:** O(log n)
+* **Condition:** Array must be **sorted**
+* **Pointers:** `low, high, mid`
+* **Decision:** If `arr[mid] < target` → right, else if `arr[mid] > target` → left
+
+---
+
+Bhai agar tu chahe to mai **ek aur tricky binary search dry run** bana du jisme **target not present + multiple iterations** bhi dikhau, taaki exam me full confidence ho.
+
+Chahoge mai wo bhi bana du?
