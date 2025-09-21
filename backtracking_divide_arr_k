@@ -1,0 +1,57 @@
+#include <iostream>
+using namespace std;
+
+int n, k;
+int arr[20];          
+int subsetsum[20];  
+bool solve(int index,int target){
+    if(index==n){
+        for(int i=0;i<k;i++){
+            if(subsetsum[i]!=target){
+                return false;
+            }
+        }
+        return true;
+    }
+    for(int i=0;i<k;i++){
+        if(subsetsum[i]+arr[index]<=target){
+            subsetsum[i]+=arr[index];
+        
+          if (solve(index + 1, target)){ return true;
+          }
+            subsetsum[i] -= arr[index];
+        }
+        if (subsetsum[i] == 0) {break; 
+        }// same case repeat avoid
+    }
+    return false;
+}  
+
+bool canpartition(int arr[],int n,int k){
+    int sum=0;
+    for(int i=0;i<n;i++){
+        sum+=arr[i];
+    }
+    if(sum%k!=0){
+        return false;
+    }
+    int target=sum/k;
+    for(int i=0;i<k;i++){
+        subsetsum[i]=0;
+    }
+    return solve(0,target);
+}
+int main() {
+    int x=5;
+    n=5;
+    k=3;
+    
+    int arr1[x]={2, 1 ,4, 5, 6};
+    for (int i = 0; i < n; i++) arr[i] = arr1[i];
+   if (canpartition(arr, n, k))
+        cout << "Yes";
+    else
+        cout << "No";
+  
+    return 0;
+}
