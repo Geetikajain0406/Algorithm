@@ -1,0 +1,40 @@
+#include <iostream>
+using namespace std;
+#define v 5
+#define INF 999999
+int main() {
+    int g[v][v]={
+        {0, 2, 0, 6, 0},
+        {2, 0, 3, 8, 5},
+        {0, 3, 0, 0, 7},
+        {6, 8, 0, 0, 9},
+        {0, 5, 7, 9, 0}
+    };
+    int selected[v];
+    for(int i=0;i<v;i++)
+    selected[i]=0;
+    selected[0]=1;
+    int edge=0;
+    while(edge<v-1){
+        int min=INF;
+        int x=0,y=0;
+        for(int i=0;i<v;i++){
+            
+            if(selected[i])
+            for(int j=0;j<v;j++){
+                if(!selected[j] && g[i][j]){
+                    if(min>g[i][j]){
+                        min=g[i][j];
+                        x=i;
+                        y=j;
+                    }
+                }
+            }
+        }
+        cout<<"the selected are "<<x<<"-"<<y<<endl;
+selected[y]=1;
+edge++;
+    }
+
+    return 0;
+}
