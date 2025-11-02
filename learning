@@ -1,0 +1,140 @@
+Bahut badiya question 👏 — yeh 4 algorithms **Greedy Approach** ke sabse important algorithms hain (exam point of view se *must-know*).
+Main tujhe **Hinglish me deeply aur clear difference ke sath** samjhaata hoon — ki **kaunsa algorithm kab use hota hai, kaise kaam karta hai, aur exam me kaise pehchaane** ki yaha kaunsa lagana chahiye 👇
+
+---
+
+## 🌟 1. Coin Change Problem (Greedy version)
+
+**Concept:**
+Tumhe kuch coin denominations diye gaye hote hain (jaise ₹1, ₹2, ₹5, ₹10) aur ek amount banana hota hai (say ₹27).
+Goal hota hai – **minimum number of coins** use karke total amount banana.
+
+**Approach:**
+Greedy algorithm har step par **sabse bada coin** choose karta hai jo remaining amount se chhota ya equal ho.
+Example:
+Amount = 27, coins = {10, 5, 2, 1}
+
+* 10 → 10 → 5 → 2 → (Total = 27)
+  Coins used = 4.
+
+**Use kab karte hain:**
+Jab tumhe *minimum coins / minimum notes* chahiye ho aur coin denominations standard ho (jaise Indian currency).
+👉 **Important:** Greedy approach har baar optimal answer nahi deta unless coin system canonical ho (jaise Indian coins).
+Non-standard coins ke liye **Dynamic Programming (DP)** version use hota hai.
+
+**Keywords to identify in exam:**
+
+> "Make change", "minimum coins/notes", "denominations", "specific amount"
+> → **Use Coin Change Problem.**
+
+---
+
+## 💰 2. Fractional Knapsack Problem
+
+**Concept:**
+Ek bag hai jisme limited weight capacity hai (say 50 kg). Tumhare paas items hain har ek ka *value* aur *weight*.
+Goal hai – **maximum profit/value** banana bag ki limit ke andar.
+
+**Fractional meaning:** Tum item ka **part** bhi le sakte ho (e.g. aadha item).
+
+**Approach:**
+Greedy approach:
+
+1. Calculate value/weight ratio (profit per weight).
+2. Sort items by descending ratio.
+3. Fill bag with highest ratio items first, fractionally if needed.
+
+**Use kab karte hain:**
+Jab **fractional items allowed** ho (e.g. petrol, gold, rice, etc. — divisible items).
+Non-fractional (0/1) case me DP lagta hai.
+
+**Keywords to identify in exam:**
+
+> "Maximum profit", "capacity", "can take fraction", "divide item"
+> → **Use Fractional Knapsack.**
+
+---
+
+## 🌲 3. Minimum Spanning Tree (MST)
+
+**Concept:**
+Given a connected weighted graph — tumhe sab vertices ko connect karna hai **minimum total edge weight** ke sath, bina cycle ke.
+Yaani ek **tree** banana hai jisme sab nodes connected ho aur total cost kam ho.
+
+**Do main algorithms hain:**
+
+### (a) Prim’s Algorithm
+
+* **Start from one vertex**.
+* Har step pe **minimum weight edge** choose karo jo tree ko naye vertex se connect kare.
+* Similar to Dijkstra but for MST.
+
+### (b) Kruskal’s Algorithm
+
+* **Sort all edges** by weight.
+* Add smallest edge if it **does not form a cycle** (use union–find).
+* Continue till n−1 edges added.
+
+**Use kab karte hain:**
+
+* Jab question me likha ho “**connect all cities with minimum cost**”, “**lay cable network**”, “**road construction with minimum cost**”.
+  → **Use MST.**
+
+**Prim vs Kruskal:**
+
+| Feature       | Prim’s                | Kruskal’s          |
+| ------------- | --------------------- | ------------------ |
+| Starts from   | A single vertex       | All edges (sorted) |
+| Data used     | Adjacency matrix/list | Edge list          |
+| Suitable for  | Dense graphs          | Sparse graphs      |
+| Detects cycle | Automatically avoided | Needs union–find   |
+
+**Keywords to identify in exam:**
+
+> “Minimum cost to connect”, “no cycles”, “connect all vertices”, “spanning tree”
+> → **Use MST (Prim’s or Kruskal’s).**
+
+---
+
+## 🚗 4. Dijkstra’s Algorithm (Shortest Path)
+
+**Concept:**
+Given a weighted graph and a **source vertex**, find the **shortest distance** from that source to **all other vertices**.
+
+**Approach:**
+Greedy choice — har step par **minimum distance vertex** choose karo aur uske neighbours update karo (relaxation).
+
+**Use kab karte hain:**
+Jab question me bola ho —
+
+> “Find shortest path”, “minimum distance”, “least cost route”, “network routing”, “map navigation”
+> → **Use Dijkstra’s Algorithm.**
+
+**Important:**
+
+* Works only for **non-negative weights**.
+* If negative edges present → **use Bellman-Ford algorithm**.
+
+---
+
+## 🔍 Exam Trick Table (Summary)
+
+| Situation / Keyword                     | Algorithm to Use             | Type           |
+| --------------------------------------- | ---------------------------- | -------------- |
+| Minimum coins or notes                  | **Coin Change (Greedy)**     | Greedy         |
+| Maximum value, fractional items allowed | **Fractional Knapsack**      | Greedy         |
+| Minimum cost to connect all nodes       | **MST (Prim’s / Kruskal’s)** | Greedy (Graph) |
+| Shortest path from source               | **Dijkstra’s Algorithm**     | Greedy (Graph) |
+
+---
+
+## 💡 Easy Way to Remember:
+
+* 💰 **Coin Change** → “Minimum coins”
+* 🧺 **Knapsack** → “Maximum profit within capacity”
+* 🌉 **MST** → “Minimum total cost to connect all”
+* 🗺️ **Dijkstra** → “Minimum distance / shortest route”
+
+---
+
+Agar chaahe to main **ek single diagrammatic summary** (flowchart style) bana du jisse exam ke pehle 2 minute me revise ho jaaye?
