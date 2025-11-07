@@ -1,0 +1,11 @@
+Tumhare paas ek bag (knapsack) hai jisme maximum weight W tak ka samaan aa sakta hai. Tumhare paas n items hain, har ek ka:
+
+weight w[i]
+
+value v[i]
+
+Tumhe decide karna hai kaunsa item lena hai aur kaunsa nahi, taaki total value maximum ho aur weight limit cross na ho.
+
+0/1 ka matlab:
+
+Har item ya to lo (1) ya na lo (0). Fraction nahi le sakte.
