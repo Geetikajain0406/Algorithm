@@ -1,0 +1,22 @@
+⚙️ Logic (Simple Explanation):
+
+We use a 2D DP array
+dp[i][w] = maximum value we can achieve using the first i items and capacity w.
+
+Steps:
+
+If either there are no items (i=0) or capacity = 0, then dp[i][w] = 0.
+
+Otherwise, for each item:
+
+If its weight ≤ current capacity w, we have two choices:
+
+Include the item → value = val[i-1] + dp[i-1][w - wt[i-1]]
+
+Exclude the item → value = dp[i-1][w]
+
+Take the maximum of both.
+
+Else, if item is heavier → we exclude it.
+
+✅ Correct Code:
