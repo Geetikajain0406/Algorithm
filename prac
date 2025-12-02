@@ -1,0 +1,145 @@
+Jaldi aur **exam-type perfect answer** de rahi hoon with BFS/DFS traversal for the given graph.
+
+---
+
+# **Q5. Difference between BFS and DFS (Complete Answer)**
+
+## **1. Traversal Methodology**
+
+### **BFS (Breadth-First Search)**
+
+* Level-by-level traversal.
+* Pehle current node ke **saare neighbours** visit karta hai, phir unke neighbours.
+* Shortest path detect karne me useful.
+
+### **DFS (Depth-First Search)**
+
+* Depth-wise traversal.
+* Pehle ek path ko **jitna deep ja sake** follow karta hai, jab tak dead-end na mile.
+* Backtracking karke next path explore karta hai.
+
+---
+
+## **2. Data Structure Used**
+
+### **BFS → Queue**
+
+FIFO (First In First Out):
+
+* Insert from back, remove from front.
+
+### **DFS → Stack**
+
+LIFO (Last In First Out):
+
+* Recursive call stack ya manually stack use hoti hai.
+
+---
+
+## **3. Use Cases**
+
+### **When to use BFS**
+
+✔ Shortest path in unweighted graph
+✔ Finding minimum number of edges
+✔ Level-order traversal
+✔ When solution is close to root (surface level)
+
+### **When to use DFS**
+
+✔ Checking connectivity / components
+✔ Topological sorting
+✔ Detecting cycles
+✔ When solution is deep inside the graph
+
+---
+
+## **4. Example Using Given Graph**
+
+Adjacency List:
+
+```
+0: [1, 2]
+1: [0, 3, 4]
+2: [0, 5]
+3: [1]
+4: [1, 5]
+5: [2, 4]
+```
+
+Start from **vertex 0**.
+
+---
+
+# **BFS Traversal (Using Queue)**
+
+Queue Steps:
+
+1. Start → **0**
+   Queue = [0]
+
+2. Visit 0 → push neighbours 1,2
+   Queue = [1,2]
+
+3. Visit 1 → push neighbours (0 visited), 3,4
+   Queue = [2,3,4]
+
+4. Visit 2 → push neighbours (0 visited), 5
+   Queue = [3,4,5]
+
+5. Visit 3 → neighbour 1 visited
+   Queue = [4,5]
+
+6. Visit 4 → neighbours 1 visited, push 5 (already included)
+   Queue = [5]
+
+7. Visit 5 → neighbours 2,4 visited
+   Queue = []
+
+### ✔ **Final BFS Order: `0, 1, 2, 3, 4, 5`**
+
+---
+
+# **DFS Traversal (Using Stack / Recursion)**
+
+Start → 0
+Go as deep as possible.
+
+Steps:
+
+1. Visit **0**
+   Next go to **1**
+
+2. Visit **1**
+   Next go to **3**
+
+3. Visit **3**
+   Backtrack (only neighbour 1 visited)
+
+4. From 1 → go to **4**
+
+5. Visit **4**
+   Next go to **5**
+
+6. Visit **5**
+   Next go to **2**
+
+7. Visit **2**
+   All neighbours visited → End
+
+### ✔ **Final DFS Order: `0, 1, 3, 4, 5, 2`**
+
+---
+
+# **FINAL COMPARISON TABLE**
+
+| Aspect               | BFS                        | DFS                            |
+| -------------------- | -------------------------- | ------------------------------ |
+| Method               | Level-wise                 | Depth-wise                     |
+| Data Structure       | Queue                      | Stack/Recursion                |
+| Use cases            | Shortest path, level order | Cycle detect, topological sort |
+| Given Example Output | **0 1 2 3 4 5**            | **0 1 3 4 5 2**                |
+
+---
+
+If you want, I can also draw the diagram of graph visually for your notes.
